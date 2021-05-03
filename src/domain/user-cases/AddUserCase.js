@@ -1,5 +1,4 @@
 const HttpResponse = require('../../main/helpers/http-reponse')
-const cpfValidator = require('../../main/helpers/cpfValidator')
 const UserDb = require('../../infra/MongoDb/Queries/UserQueries')
 module.exports = {
   async AddUserCase (user) {
@@ -37,10 +36,8 @@ module.exports = {
         }
       }
 
-      const validCpf = await cpfValidator.validate(cpf)
-
-      const userCpf = await UserDb.getCpf(validCpf)
-      if (!userCpf.success) {
+      const userCpf = await UserDb.getCpf(cpf)
+      if (userCpf.success) {
         return {
           success: false,
           error: HttpResponse.badRequest({ success: false, msg: 'Cpf is already in use' })
@@ -50,7 +47,10 @@ module.exports = {
         success: true
       }
     } catch (e) {
-      console.log(e)
+      return {
+        success: false,
+        error: HttpResponse.serverError({ success: false, error: e })
+      }
     }
   }
 }
