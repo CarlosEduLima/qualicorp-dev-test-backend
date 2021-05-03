@@ -12,7 +12,7 @@ module.exports = {
     if (!user) {
       return { success: false }
     }
-    return { success: true, foundedUser: user }
+    return { success: true, foundUser: user }
   },
   async getAll () {
     const users = await UserModel.find({})

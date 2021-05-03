@@ -21,7 +21,7 @@ module.exports = {
       }
       return {
         success: true,
-        user: query.foundedUser
+        user: query.foundUser
       }
     } catch (e) {
       return {
