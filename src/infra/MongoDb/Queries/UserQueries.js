@@ -36,7 +36,7 @@ module.exports = {
       email: email,
       age: age,
       cpf: cpf,
-      phone_number: phoneNumber
+      phoneNumber: phoneNumber
     })
     if (!updatedUser) {
       return { success: false }

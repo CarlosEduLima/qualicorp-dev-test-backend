@@ -15,6 +15,6 @@ module.exports = {
     if (!AddedUser.success) {
       return HttpResponse.serverError('User not creaded')
     }
-    return HttpResponse.success('Users created')
+    return HttpResponse.success('User created')
   }
 }

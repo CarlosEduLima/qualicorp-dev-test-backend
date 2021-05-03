@@ -17,7 +17,7 @@ module.exports = new mongoose.Schema(
     age: {
       type: String
     },
-    phone_number: {
+    phoneNumber: {
       type: String
     }
 
