@@ -30,7 +30,6 @@ module.exports = {
   },
   async update (id, user) {
     const { name, email, age, password, cpf, phoneNumber } = user
-    console.log(user)
     const updatedUser = await UserModel.findByIdAndUpdate(id, {
       name: name,
       password: password,
