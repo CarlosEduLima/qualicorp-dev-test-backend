@@ -11,20 +11,31 @@ module.exports = {
       }
       const userId = httpResquest.params.id
 
-      const query = UserDb.delete(userId)
-
+      const query = await UserDb.getById(userId)
       if (!query.success) {
         return {
           success: false,
           error: HttpResponse.badRequest('User was not found')
         }
       }
+
+      const deleted = await UserDb.delete(userId)
+
+      if (!deleted.success) {
+        return {
+          success: false,
+          error: HttpResponse.badRequest('User was not deleted')
+        }
+      }
       return {
         success: true,
-        user: query.user
+        user: deleted.user
       }
     } catch (e) {
-      console.log(e)
+      return {
+        success: false,
+        error: HttpResponse.serverError({ success: false, error: e })
+      }
     }
   }
 }
