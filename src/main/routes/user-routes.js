@@ -1,5 +1,17 @@
 const adpter = require('../config/express-router-adpter')
 const addUserRouter = require('../../presentation/routers/add-user-router')
+const deleteUserRouter = require('../../presentation/routers/delete-user-router')
+const getUserRouter = require('../../presentation/routers/get-user-router')
+const getUsersRouter = require('../../presentation/routers/get-users-router')
+const updateUserRouter = require('../../presentation/routers/update-user-router')
+const userLoginRouter = require('../../presentation/routers/login-router')
+const forgotPasswordRouter = require('../../presentation/routers/forgot-password-router')
 module.exports = router => {
-  router.get('/test', adpter(addUserRouter()))
+  router.get('/user/:id', adpter(getUserRouter()))
+  router.get('/users', adpter(getUsersRouter()))
+  router.post('/add-user', adpter(addUserRouter()))
+  router.delete('/delete-user/:id', adpter(deleteUserRouter()))
+  router.put('/update-user/:id', adpter(updateUserRouter()))
+  router.post('/login', adpter(userLoginRouter()))
+  router.post('/forgot-password', adpter(forgotPasswordRouter()))
 }
