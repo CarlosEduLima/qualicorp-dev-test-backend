@@ -12,7 +12,6 @@ module.exports = {
       const userId = httpResquest.params.id
 
       const query = await UserDb.getById(userId)
-      console.log(query)
       if (!query.success) {
         return {
           success: false,
@@ -26,7 +25,7 @@ module.exports = {
     } catch (e) {
       return {
         success: false,
-        error: HttpResponse.serverError('Error on validate user')
+        error: HttpResponse.serverError({ error: e })
       }
     }
   }
