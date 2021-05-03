@@ -9,7 +9,7 @@ module.exports = {
     }
     const updatedUser = await UserDb.update(httpRequest.params.id, httpRequest.body)
     if (!updatedUser.success) {
-      return HttpResponse.serverError(updatedUser.error)
+      return HttpResponse.serverError('Error on update user')
     }
     return HttpResponse.success({ success: true, user: updatedUser })
   }
